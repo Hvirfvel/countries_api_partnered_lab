@@ -6,7 +6,10 @@ const Country = ({country, onCountryClick}) => {
     }
 
     return (
-        <li onClick={handleClick}>{country}</li>
+        <li onClick={handleClick}>
+            <h2> {country.name} </h2> 
+            <img src={country.flags.svg} width="100px" height="auto" />
+        </li>
     )
 }
 export default Country;

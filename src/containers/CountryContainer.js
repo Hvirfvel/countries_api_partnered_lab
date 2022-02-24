@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import CountryList from '../components/CountryList';
 import CountryDetail from '../components/CountryDetail';
+import FavouriteCountriesList from '../components/FavouriteCountriesList';
 
 const CountryContainer = () => {
     const [countries, setCountries] = useState([]);
@@ -24,10 +25,11 @@ const CountryContainer = () => {
 
     return (
         <>
+        <FavouriteCountriesList />
+        {selectedCountry ? <CountryDetail selectedCountry={selectedCountry}/> : null}
         Total Population: {totalPopulation}
         <h1>CountryContainer</h1>
         <CountryList countries={countries} onCountryClick={onCountryClick}/>
-        <CountryDetail selectedCountry={selectedCountry}/>
         
         </>
     );
