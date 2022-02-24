@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
 import CountryList from '../components/CountryList';
+import CountryDetail from '../components/CountryDetail';
 
 const CountryContainer = () => {
     const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
 
     useEffect(() => {
         getCountries();
@@ -14,8 +16,20 @@ const CountryContainer = () => {
         .then(countries => setCountries(countries))
     }
 
+    const onCountryClick = (country) => {
+        setSelectedCountry(country)
+    }
+
+    const totalPopulation = countries.reduce( (previousvalue, country) => previousvalue + country.population, 0);
+
     return (
+        <>
+        Total Population: {totalPopulation}
         <h1>CountryContainer</h1>
+        <CountryList countries={countries} onCountryClick={onCountryClick}/>
+        <CountryDetail selectedCountry={selectedCountry}/>
+        
+        </>
     );
 }
 
